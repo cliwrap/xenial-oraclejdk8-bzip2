@@ -1,0 +1,19 @@
+services:
+- docker
+script:
+- docker build -t cliwrap/xenial-oraclejdk8-bzip2 .
+- >
+  docker run cliwrap/xenial-oraclejdk8-bzip2 java -version
+  2>&1 | grep "java version .1.8"
+- >
+  docker run cliwrap/xenial-oraclejdk8-bzip2 bzip2 --version
+  2>&1 | grep "bzip2, a block-sorting file compressor."
+# Make sure it is still possible to use apt
+- >
+  docker run cliwrap/xenial-oraclejdk8-bzip2 sh -c "apt-get update && apt-get install less"
+after_success:
+- >
+  curl -H "Content-Type: application/json"
+  --data '{"source_type": "Branch", "source_name": "master"}'
+  -X POST
+  https://registry.hub.docker.com/u/cliwrap/xenial-oraclejdk8-bzip2/trigger/d2563ab7-e4fc-455a-bfcf-3f40ee0b883e/
