@@ -1,7 +1,9 @@
 FROM wtanaka/ubuntu-1604-oracle-java-8
 MAINTAINER https://wtanaka.com/dockerfiles
-COPY run-as-hostuid.sh /
-RUN apt-get update \
+RUN cd / \
+  && wget https://raw.githubusercontent.com/cliwrap/xenial/master/run-as-hostuid.sh \
+  && chmod a+x run-as-hostuid.sh \
+  && apt-get update \
   && apt-get -y install bzip2 \
   && apt-get clean autoclean -y \
   && apt-get autoremove -y \
@@ -18,7 +20,4 @@ RUN apt-get update \
     /var/lib/dpkg/triggers \
     /var/lib/cache \
     /var/lib/log
-
-RUN chmod +x /run-as-hostuid.sh
 ENTRYPOINT ["/run-as-hostuid.sh"]
-
