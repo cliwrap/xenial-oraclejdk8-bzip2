@@ -4,4 +4,4 @@
 * Oracle Java 8 installed
 * bzip2 installed
 
-To use: [`docker pull wtanaka/xenial-oraclejdk8-bz2`](https://hub.docker.com/r/wtanaka/xenial-oraclejdk8-bz2/)
+To use: [`docker pull cliwrap/xenial-openjdk-bzip2`](https://hub.docker.com/r/cliwrap/xenial-openjdk-bzip2/)
